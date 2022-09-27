@@ -30,7 +30,7 @@
 											<h2>board</h2>
 										</header>
 										<div class="table-wrapper">
-										<form action="update.do">
+										<form action="update.do" method="post" enctype="multipart/form-data">
 											<table>
 												<thead>
 													<tr>
@@ -41,10 +41,11 @@
 												</thead>
 												<tbody>
 													<tr>
-														<td> <input type="text" name="title" value="${data.title}" required="required"> </td>
-														<td><input type="text" name="content" value="${data.content}" required="required"></td>
+														<td> <input type="text" name="title" value="${data.title}" required> </td>
+														<td><input type="text" name="content" value="${data.content}" required></td>
 														<td>${data.writer}</td>
 														<td>${data.regdate}</td>
+														<td> <img alt="업로드한사진" src="images/${data.fileName}" id="preview"> <input type="file" name="uploadFile" onchange="loadFile(this);"> </td>
 													</tr>
 												</tbody>
 												<tfoot>
@@ -109,6 +110,20 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script type="text/javascript">
+	function loadFile(input){
+		if(input.files && input.files[0]){
+			var fr = new FileReader();
+			fr.onload = function(event){
+				document.getElementById('preview').src = event.target.result;
+			}
+			fr.readAsDataURL(input.files[0]);
+		}
+		else {
+			document.getElementById('preview').src = "";
+		}
+	} 
+</script> 
 
 	</body>
 </html>

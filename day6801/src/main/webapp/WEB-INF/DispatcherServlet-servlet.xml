@@ -12,17 +12,14 @@
 
 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
-	<!-- DataSource 설정하기 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="lee" />
-		<property name="password" value="1234" />
-	</bean>
-	<!-- Spring JDBC 설정하기 -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+	 <!-- 파일 업로드 관련 설정 -->
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="100000" />
+   </bean>
+	
+	
+	
+	
 	<!-- HM 등록 -->
 <!-- 
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">

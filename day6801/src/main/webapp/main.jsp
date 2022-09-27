@@ -49,12 +49,14 @@
 										</table>
 										</form>
 										<!--글추가  -->
-										<form action="insert.do" method="post">
+										<form action="insert.do" method="post" enctype="multipart/form-data">
 											<input type="hidden" name="writer" value="${userName}">
 											<label for="title">글제목</label> <input type="text" name="title" id="title" required="required">
 											<label for="content">내용</label> <input type="text" name="content" id="content" required="required">
 											<input type="submit" value="글등록">
+											<input  type="file" name="uploadFile" onchange="loadFile(this);">
 										</form>
+										<img alt="미리보기" id="preview" />
 										
 										<div class="table-wrapper">
 											<table>
@@ -129,7 +131,22 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="assets/js/main.js"></script>v
+			
+			<script type="text/javascript">
+	function loadFile(input){
+		if(input.files && input.files[0]){
+			var fr = new FileReader();
+			fr.onload = function(event){
+				document.getElementById('preview').src = event.target.result;
+			}
+			fr.readAsDataURL(input.files[0]);
+		}
+		else {
+			document.getElementById('preview').src = "";
+		}
+	} 
+</script> 
 
 	</body>
 </html>

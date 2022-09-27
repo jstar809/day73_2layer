@@ -5,10 +5,10 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class PointCut {
-	@Pointcut("execution(* com.joo.biz..*Impl.*(..))")
+	@Pointcut("execution(* com.kim.biz..*Impl.*(..))")
 	public void aPointcut() {}
 	
-	@Pointcut("execution(* com.joo.biz..*Impl.select*(..))")
+	@Pointcut("execution(* com.kim.biz..*Impl.select*(..))")
 	public void bPointcut() {}
 	
 }

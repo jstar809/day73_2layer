@@ -1,5 +1,7 @@
 package com.kim.biz.board;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	private int bid;
 	private String title;
@@ -9,6 +11,21 @@ public class BoardVO {
 	private String regdate;
 	private String searchCondition;
 	private String searchContent;
+	private MultipartFile uploadFile;
+	private String fileName;
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	public String getSearchCondition() {
 		return searchCondition;
 	}
@@ -61,6 +78,7 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [bid=" + bid + ", title=" + title + ", writer=" + writer + ", content=" + content + ", cnt="
 				+ cnt + ", regdate=" + regdate + ", searchCondition=" + searchCondition + ", searchContent="
-				+ searchContent + "]";
+				+ searchContent + ", upLoadFile=" + uploadFile + ", fileName=" + fileName + "]";
 	}
+	
 }

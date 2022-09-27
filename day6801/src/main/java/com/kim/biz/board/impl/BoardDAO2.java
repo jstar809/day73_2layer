@@ -28,17 +28,20 @@ public class BoardDAO2 {
 	final String sql_selectAll_TITLE="SELECT * FROM BOARD WHERE TITLE LIKE '%'||?||'%' ORDER BY BID DESC";
 	final String sql_selectAll_WRITER="SELECT * FROM BOARD WHERE WRITER LIKE '%'||?||'%' ORDER BY BID DESC";
 	
-	final String sql_insert="INSERT INTO BOARD(BID,TITLE,WRITER,CONTENT) VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),?,?,?)";
-	final String sql_update="UPDATE BOARD SET TITLE=?,CONTENT=? WHERE BID=?";
+	final String sql_insert="INSERT INTO BOARD(BID,TITLE,WRITER,CONTENT,IMG) VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),?,?,?,?)";
+	final String sql_update="UPDATE BOARD SET TITLE=?,CONTENT=? ,IMG=? WHERE BID=?";
 	final String sql_delete="DELETE BOARD WHERE BID=?";
 	
 	public void insertBoard(BoardVO vo) {
-		System.out.println("바뀐 보드를 썼다고!!");
-		jdbcTemplate.update(sql_insert, vo.getTitle(),vo.getWriter(),vo.getContent());
+		System.out.println("인서트 시작 "+vo.getFileName());
+		jdbcTemplate.update(sql_insert, vo.getTitle(),vo.getWriter(),vo.getContent(),vo.getFileName());
 	}
 	
 	public void updateBoard(BoardVO vo) {
-		jdbcTemplate.update(sql_update, vo.getTitle(),vo.getContent(),vo.getBid());
+		System.out.println("업데이트 파일 이름 "+vo.getFileName());
+
+		jdbcTemplate.update(sql_update, vo.getTitle(),vo.getContent(),vo.getFileName(),vo.getBid());
+		//jdbcTemplate.update(sql_update, vo.getTitle(),vo.getContent(),vo.getBid());
 	}
 	
 	public void deleteBoard(BoardVO vo) {
@@ -77,6 +80,7 @@ class BoardRowMapper implements RowMapper<BoardVO>{
 		data.setWriter(rs.getString("WRITER"));
 		data.setCnt(rs.getInt("CNT"));
 		data.setRegdate(rs.getString("REGDATE"));
+		data.setFileName(rs.getString("IMG"));
 		//System.out.println(data);
 		return data;
 	}
