@@ -14,6 +14,18 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+	<!-- Mybateis-->
+	<dependency>
+         <groupId>org.mybatis</groupId>
+         <artifactId>mybatis</artifactId>
+         <version>3.3.1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.ibatis</groupId>
+         <artifactId>ibatis-core</artifactId>
+         <version>3.0</version>
+      </dependency>
+
 	<!-- DBCP -->
       <dependency>
          <groupId>commons-dbcp</groupId>

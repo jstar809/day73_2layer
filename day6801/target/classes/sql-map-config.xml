@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+      <!-- DB연동정보 파일과 연결 -->
+   <properties resource="db.properties" />
+
+    <!-- 별칭(Alias) 설정 -->
+    <typeAliases>
+      <typeAlias type="com.kim.biz.board.BoardVO" alias="board" />
+      <typeAlias type="com.kim.biz.member.MemberVO" alias="member" />
+      
+   </typeAliases>
+
+
+
+     <!-- DataSource 설정 -->
+   <environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC" />
+         <dataSource type="POOLED">
+            <property name="driver" value="${jdbc.driverClassName}" />
+            <property name="url" value="${jdbc.url}" />
+            <property name="username" value="${jdbc.username}" />
+            <property name="password" value="${jdbc.password}" />
+         </dataSource>
+      </environment>
+   </environments>
+
+    <mappers>
+    	<mapper resource="mappings/board-mapping.xml" />
+    	<mapper resource="mappings/member-mapping.xml" />
+    </mappers>
+</configuration>

@@ -7,3 +7,4 @@ CREATE TABLE MEMBER(
 
 INSERT INTO MEMBER VALUES('admin','1234','°ü¸®ÀÚ','ADMIN');
 select * from member;
+	   DELETE MEMBER WHERE MID="duckbae";
